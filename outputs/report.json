@@ -1,0 +1,173 @@
+{
+    "total_patents": 5367164,
+    "top_inventors": [
+        {
+            "inventor_id": "fl:jo_ln:ive-4",
+            "total_patents": 1753
+        },
+        {
+            "inventor_id": "fl:ba_ln:andre-6",
+            "total_patents": 1473
+        },
+        {
+            "inventor_id": "fl:ri_ln:howarth-2",
+            "total_patents": 1466
+        },
+        {
+            "inventor_id": "fl:du_ln:kerr-1",
+            "total_patents": 1440
+        },
+        {
+            "inventor_id": "fl:ch_ln:stringer-4",
+            "total_patents": 1429
+        },
+        {
+            "inventor_id": "fl:da_ln:deiuliis-4",
+            "total_patents": 1413
+        },
+        {
+            "inventor_id": "fl:eu_ln:whang-8",
+            "total_patents": 1391
+        },
+        {
+            "inventor_id": "fl:ri_ln:zorkendorfer-1",
+            "total_patents": 1365
+        },
+        {
+            "inventor_id": "fl:da_ln:coster-2",
+            "total_patents": 1355
+        },
+        {
+            "inventor_id": "fl:ma_ln:rohrbach-2",
+            "total_patents": 1345
+        }
+    ],
+    "top_companies": [
+        {
+            "disambig_assignee_organization": "SAMSUNG DISPLAY CO., LTD.",
+            "total": 11834
+        },
+        {
+            "disambig_assignee_organization": null,
+            "total": 6863
+        },
+        {
+            "disambig_assignee_organization": "LG ELECTRONICS INC.",
+            "total": 5267
+        },
+        {
+            "disambig_assignee_organization": "NIKE, Inc.",
+            "total": 5100
+        },
+        {
+            "disambig_assignee_organization": "Microsoft Corporation",
+            "total": 3870
+        },
+        {
+            "disambig_assignee_organization": "Apple Inc.",
+            "total": 3189
+        },
+        {
+            "disambig_assignee_organization": "SONY GROUP CORPORATION",
+            "total": 2984
+        },
+        {
+            "disambig_assignee_organization": "The Procter & Gamble Company",
+            "total": 2615
+        },
+        {
+            "disambig_assignee_organization": "HONDA MOTOR CO., LTD.",
+            "total": 2151
+        },
+        {
+            "disambig_assignee_organization": "TOYOTA JIDOSHA KABUSHIKI KAISHA",
+            "total": 1798
+        }
+    ],
+    "patents_per_year": [
+        {
+            "year": 2000,
+            "total": 176192
+        },
+        {
+            "year": 2001,
+            "total": 184172
+        },
+        {
+            "year": 2002,
+            "total": 184494
+        },
+        {
+            "year": 2003,
+            "total": 187104
+        },
+        {
+            "year": 2004,
+            "total": 181413
+        },
+        {
+            "year": 2005,
+            "total": 157829
+        },
+        {
+            "year": 2006,
+            "total": 196489
+        },
+        {
+            "year": 2007,
+            "total": 182978
+        },
+        {
+            "year": 2008,
+            "total": 185260
+        },
+        {
+            "year": 2009,
+            "total": 192052
+        },
+        {
+            "year": 2010,
+            "total": 244599
+        },
+        {
+            "year": 2011,
+            "total": 248101
+        },
+        {
+            "year": 2012,
+            "total": 277285
+        },
+        {
+            "year": 2013,
+            "total": 303658
+        },
+        {
+            "year": 2014,
+            "total": 327014
+        },
+        {
+            "year": 2015,
+            "total": 326969
+        },
+        {
+            "year": 2016,
+            "total": 334674
+        },
+        {
+            "year": 2017,
+            "total": 352587
+        },
+        {
+            "year": 2018,
+            "total": 341104
+        },
+        {
+            "year": 2019,
+            "total": 392618
+        },
+        {
+            "year": 2020,
+            "total": 390572
+        }
+    ]
+}
