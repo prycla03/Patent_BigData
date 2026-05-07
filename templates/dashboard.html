@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Intelligence Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #eef2f7;
+            transition: 0.3s;
+            color: #111;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(90deg, #4a90e2, #6a5acd);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        /* DARK MODE BUTTON */
+        .toggle-btn {
+            position: absolute;
+            right: 20px;
+            top: 18px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            background: white;
+            color: #333;
+        }
+
+        /* CONTROLS */
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        select {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* CARD */
+        .chart-box {
+            background: white;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        /* ======================
+           DARK MODE
+        ====================== */
+        body.dark {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark .chart-box {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark select {
+            background: #1e293b;
+            color: white;
+            border: 1px solid #334155;
+        }
+
+        body.dark .toggle-btn {
+            background: #1e293b;
+            color: white;
+            border: 1px solid #334155;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    📊 Patent Intelligence Dashboard
+    <button class="toggle-btn" onclick="toggleDark()">🌙 Dark Mode</button>
+</div>
+
+<!-- CHART SELECTOR -->
+<div class="controls">
+    <select id="chartSelector" onchange="switchChart()">
+        <option value="country">🌍 Patents by Country</option>
+        <option value="inventor">👨‍🔬 Top Inventors</option>
+        <option value="company">🏢 Top Companies</option>
+    </select>
+</div>
+
+<!-- CHART AREA -->
+<div class="chart-box">
+    <canvas id="chartCanvas"></canvas>
+</div>
+
+<script>
+    // ======================
+    // DARK MODE TOGGLE
+    // ======================
+    function toggleDark() {
+        document.body.classList.toggle("dark");
+
+        const btn = document.querySelector(".toggle-btn");
+        if (document.body.classList.contains("dark")) {
+            btn.innerHTML = "☀️ Light Mode";
+            localStorage.setItem("theme", "dark");
+        } else {
+            btn.innerHTML = "🌙 Dark Mode";
+            localStorage.setItem("theme", "light");
+        }
+
+        updateChart();
+    }
+
+    // Load saved theme
+    (function () {
+        const saved = localStorage.getItem("theme");
+        if (saved === "dark") {
+            document.body.classList.add("dark");
+            document.querySelector(".toggle-btn").innerHTML = "☀️ Light Mode";
+        }
+    })();
+
+    // ======================
+    // FLASK DATA (UNCHANGED)
+    // ======================
+    const countries = {{ countries | tojson }};
+    const countryValues = {{ country_values | tojson }};
+
+    const inventors = {{ inventors | tojson }};
+    const inventorValues = {{ inventor_values | tojson }};
+
+    const companies = {{ companies | tojson }};
+    const companyValues = {{ company_values | tojson }};
+
+    // ======================
+    // CHART
+    // ======================
+    let chart;
+
+    function renderChart(type) {
+        if (chart) chart.destroy();
+
+        let config = {};
+
+        if (type === "country") {
+            config = {
+                label: "Number of Patents",
+                labels: countries,
+                data: countryValues,
+                color: "rgba(74, 144, 226, 0.7)"
+            };
+        }
+
+        if (type === "inventor") {
+            config = {
+                label: "Top Inventors",
+                labels: inventors,
+                data: inventorValues,
+                color: "rgba(106, 90, 205, 0.7)"
+            };
+        }
+
+        if (type === "company") {
+            config = {
+                label: "Top Companies",
+                labels: companies,
+                data: companyValues,
+                color: "rgba(46, 204, 113, 0.7)"
+            };
+        }
+
+        chart = new Chart(document.getElementById("chartCanvas"), {
+            type: "bar",
+            data: {
+                labels: config.labels,
+                datasets: [{
+                    label: config.label,
+                    data: config.data,
+                    backgroundColor: config.color,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: document.body.classList.contains("dark") ? "#e2e8f0" : "#333"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: document.body.classList.contains("dark") ? "#334155" : "#eee" },
+                        ticks: { color: document.body.classList.contains("dark") ? "#e2e8f0" : "#333" }
+                    },
+                    y: {
+                        grid: { color: document.body.classList.contains("dark") ? "#334155" : "#eee" },
+                        ticks: { color: document.body.classList.contains("dark") ? "#e2e8f0" : "#333" }
+                    }
+                }
+            }
+        });
+    }
+
+    function switchChart() {
+        renderChart(document.getElementById("chartSelector").value);
+    }
+
+    function updateChart() {
+        switchChart();
+    }
+
+    // Default
+    renderChart("country");
+</script>
+
+</body>
+</html>
