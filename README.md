@@ -12,12 +12,14 @@ This project focuses on processing and analyzing large-scale patent datasets usi
 Patent_BigData/
 │── pipeline.ipynb        # Main data processing notebook
 │── outputs/              # Generated results and analysis outputs
-│── scripts/              # Supporting scripts (if any)
-```
+│── scripts/              # Supporting scripts
+|--templates/             #dashboard code
+|--app.py
+|--requirements.txt
+|--schema.sql
 
----
 
-## ⚙️ Technologies Used
+##Technologies Used
 
 * Python
 * Pandas
@@ -51,7 +53,6 @@ Patent_BigData/
 
 * Processed results are saved in the `outputs/` folder
 
----
 
 ##How Chunking Works
 
@@ -67,35 +68,19 @@ This improves:
 * Memory efficiency
 * Scalability
 
----
-
-##How to Run the Project
-
-1. Open the notebook:
-
-   ```
-   pipeline.ipynb
-   ```
-2. Run all cells step by step
-
----
-
 ## Notes
 
 * Large raw datasets are **not included** due to size limitations
 * Ensure dataset paths are correctly configured before running
 
----
 
 ## Results
 
 * Cleaned and processed patent datasets
 * Outputs stored in the `outputs/` directory
 
----
 
 ## Conclusion
 
 This project demonstrates how to handle big data efficiently using Python by applying chunking and structured data processing techniques.
 
----
